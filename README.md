@@ -13,7 +13,9 @@ This hook requires `react-native-permissions` and
 `react-native-device-info` to also be installed in the React Native project.
 
 ```
-npm i react-native-permissions react-native-device-info https://github.com/CodeFishStudio/react-native-use-permission
+# Update below to use the desired version of this package:
+
+npm i react-native-permissions react-native-device-info https://github.com/CodeFishStudio/react-native-use-permission#v1.0.0
 ```
 
 ## Setup
