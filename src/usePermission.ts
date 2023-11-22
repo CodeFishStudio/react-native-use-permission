@@ -25,7 +25,7 @@ export const usePermission: UsePermissionHook = (
     permissionType: PermissionType
 ) => {
     const [status, setStatus] = useState<PermissionStatus>(
-        PermissionStatus.UNKNOWN
+        PermissionStatus.INITIALISING
     );
 
     /**
@@ -44,7 +44,7 @@ export const usePermission: UsePermissionHook = (
      * returns the updated `status`.
      */
     const check = useCallback<PermissionCheckFunction>(async () => {
-        if (!permissionType) return PermissionStatus.UNKNOWN;
+        if (!permissionType) return PermissionStatus.INITIALISING;
 
         /**
          * If currently waiting for a result from the `request`
@@ -141,7 +141,7 @@ export const usePermission: UsePermissionHook = (
         request,
         check,
 
-        isLoading: status === PermissionStatus.UNKNOWN,
+        isInitialising: status === PermissionStatus.INITIALISING,
         isGranted: status === PermissionStatus.GRANTED,
         isRequestable: status === PermissionStatus.REQUESTABLE,
         isBlocked: status === PermissionStatus.BLOCKED,

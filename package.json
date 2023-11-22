@@ -1,7 +1,7 @@
 {
     "name": "react-native-use-permission",
-    "version": "0.1.0",
-    "description": "React Native hook to help manage system permissions",
+    "version": "1.0.0",
+    "description": "React Native hook to help manage system permission status",
     "author": "CodeFish Studio",
     "main": "index.ts",
     "license": "ISC",
