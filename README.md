@@ -15,7 +15,7 @@ Updating the command below to use your
 desired version:
 
 ```bash
-npm i https://github.com/CodeFishStudio/react-native-use-permission#v1.0.0
+npm i https://github.com/CodeFishStudio/react-native-use-permission#v1.0.1
 ```
 
 ### Install peer dependencies
@@ -151,3 +151,9 @@ Helper boolean representing if [`status`](#status) === `PermissionStatus.REQUEST
 ### `isBlocked`
 
 Helper boolean representing if [`status`](#status) === `PermissionStatus.BLOCKED`
+
+# Version History
+
+Refer to the [change
+log](https://github.com/CodeFishStudio/react-native-use-permission/blob/master/CHANGELOG.md)
+for version history.
