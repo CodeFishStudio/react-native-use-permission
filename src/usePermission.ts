@@ -17,9 +17,9 @@ import {getSystemPermissions} from './utils/getSystemPermissions';
 import {useAppForegroundEffect} from './hooks/useAppForegroundEffect';
 
 /**
- * Hook to that returns the current status of the provided
+ * Hook that returns the current status of the provided
  * `permissionType`, and provides a `request` callback for triggering a
- * system permission prompt if the permission is requestably.
+ * system permission prompt if the permission is requestable.
  */
 export const usePermission: UsePermissionHook = (
     permissionType: PermissionType
@@ -29,7 +29,7 @@ export const usePermission: UsePermissionHook = (
     );
 
     /**
-     * Whether a request is currently in flight.
+     * Whether a request is currently in-flight.
      */
     const isRequesting = useRef(false);
 

@@ -36,9 +36,11 @@ in your native `/ios` and `/android` files.
 Call the hook by providing the desired permission type:
 
 ```javascript
+import {usePermission, PermissionType} from 'react-native-use-permission';
+
 const permission = usePermission(PermissionType.BLUETOOTH);
 
-const isFocused = useIsFocused();
+const isFocused = useIsFocused(); // from React Navigation
 
 /**
  * Requests the Bluetooth permission when this screen comes into focus.
