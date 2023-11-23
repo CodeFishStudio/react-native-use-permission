@@ -24,8 +24,7 @@ const permissionGroups: PermissionGroups = {
         ios: IS_EMULATOR ? [] : [PERMISSIONS.IOS.BLUETOOTH],
 
         /**
-         * For Android >= 31 the bluetooth permissions needing to be
-         * requested are different from < 31.
+         * Permissions required for Android change based on API level
          *
          * https://developer.android.com/guide/topics/connectivity/bluetooth/permissions#declare-android12-or-higher
          */
@@ -49,6 +48,12 @@ const permissionGroups: PermissionGroups = {
 
     [PermissionType.PHOTO_LIBRARY]: {
         ios: [PERMISSIONS.IOS.PHOTO_LIBRARY],
+
+        /**
+         * Permissions required for Android change based on API level
+         *
+         * https://developer.android.com/about/versions/14/changes/partial-photo-video-access#permissions
+         */
         android:
             ANDROID_API_LEVEL >= 33
                 ? ANDROID_API_LEVEL >= 34
