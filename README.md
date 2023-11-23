@@ -14,7 +14,7 @@ the access to the permission via system prompts.
 This hook requires `react-native-permissions` and
 `react-native-device-info` as peer dependencies:
 
-```
+```bash
 # Update below to use the desired version of this package:
 
 npm i react-native-permissions react-native-device-info https://github.com/CodeFishStudio/react-native-use-permission#v1.0.0
@@ -31,7 +31,7 @@ in your native `/ios` and `/android` files.
 
 Call the hook by providing the desired permission type:
 
-```
+```javascript
 const permission = usePermission(PermissionType.BLUETOOTH);
 
 const isFocused = useIsFocused();
@@ -44,7 +44,6 @@ useEffect(() => {
         permission.request();
     }
 }, [isFocused, permission]);
-
 ```
 
 ### Permission Types
