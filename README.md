@@ -11,13 +11,17 @@ the access to the permission via system prompts.
 > ℹ️ This hook is written in uncompiled Typescript, so ensure your project
 > supports reading Typescript files.
 
-This hook requires `react-native-permissions` and
-`react-native-device-info` as peer dependencies:
+Updating the command below to use your
+desired version:
 
 ```bash
-# Update below to use the desired version of this package:
+npm i https://github.com/CodeFishStudio/react-native-use-permission#v1.0.0
+```
 
-npm i react-native-permissions react-native-device-info https://github.com/CodeFishStudio/react-native-use-permission#v1.0.0
+### Install peer dependencies
+
+```bash
+npm i react-native-permissions react-native-device-info
 ```
 
 ## Setup
