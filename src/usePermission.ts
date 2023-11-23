@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
-import {Platform} from 'react-native';
+import {Linking, Platform} from 'react-native';
 import {
     checkMultiple,
     requestMultiple,
@@ -140,6 +140,7 @@ export const usePermission: UsePermissionHook = (
         status,
         request,
         check,
+        openSettings: Linking.openSettings,
 
         isInitialising: status === PermissionStatus.INITIALISING,
         isGranted: status === PermissionStatus.GRANTED,

@@ -1,5 +1,8 @@
+import {Linking} from 'react-native';
+
 export enum PermissionType {
     BLUETOOTH = 'bluetooth',
+    CAMERA = 'camera',
     LOCATION = 'location',
     PHOTO_LIBRARY = 'photoLibrary',
     WIFI = 'wifi',
@@ -54,6 +57,12 @@ export type UsePermissionHook = {
          * usePermission hook.
          */
         check: PermissionCheckFunction;
+
+        /**
+         * Alias for React Native's Linking.openSettings(). Open the Settings
+         * app and displays the app’s custom settings, if it has any.
+         */
+        openSettings: (typeof Linking)['openSettings'];
 
         isInitialising: boolean;
         isGranted: boolean;

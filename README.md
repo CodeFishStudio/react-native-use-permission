@@ -28,14 +28,15 @@ npm i react-native-permissions react-native-device-info
 
 Follow the [setup
 instructions](https://github.com/zoontek/react-native-permissions#setup)
-for `react-native-permissions` to include the relevant system permissions
+for `react-native-permissions` to include the relevant system
+permissions and usage descriptions
 in your native `/ios` and `/android` files.
 
 ## Usage
 
 Call the hook by providing the desired permission type:
 
-```javascript
+```typescript
 import {usePermission, PermissionType} from 'react-native-use-permission';
 
 const permission = usePermission(PermissionType.BLUETOOTH);
@@ -60,6 +61,7 @@ required for the desired functionality:
 | Permission Type                | Functionality                                                 |
 | ------------------------------ | ------------------------------------------------------------- |
 | `PermissionType.BLUETOOTH`     | Ability to use of the systems Bluetooth functionality.        |
+| `PermissionType.CAMERA`        | Ability to access the device’s camera to take photos.         |
 | `PermissionType.LOCATION`      | Ability to query the system for the user’s current location.  |
 | `PermissionType.PHOTO_LIBRARY` | Ability to pick a photo from the user’s device photo library. |
 | `PermissionType.WIFI`          | Ability to read the SSID of the devices WiFi network.         |
@@ -81,16 +83,20 @@ status.
 the user has gone to the app’s system settings and altered the app’s
 current permissions).
 
-| Permission Status               | Description                                                                                                                                                                                                                               |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `PermissionStatus.INITIALISING` | The status has not been initialised yet and is unknown.                                                                                                                                                                                   |
-| `PermissionStatus.REQUESTABLE`  | The permission is requestable via the [`request()`](#request) callback.                                                                                                                                                                   |
-| `PermissionStatus.GRANTED`      | The permission has been granted and can be considered useable.                                                                                                                                                                            |
-| `PermissionStatus.BLOCKED`      | The permission has previously been requested, but denied by the user. In this situation the only way to enable the permission is to direct the user to the app’s system settings page for them to manually enable the desired permission. |
+| Permission Status               | Description                                                                                                                                                                                                                                                |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PermissionStatus.INITIALISING` | The status has not been initialised yet and is unknown.                                                                                                                                                                                                    |
+| `PermissionStatus.REQUESTABLE`  | The permission is requestable via the [`request()`](#request) callback.                                                                                                                                                                                    |
+| `PermissionStatus.GRANTED`      | The permission has been granted and can be considered useable.                                                                                                                                                                                             |
+| `PermissionStatus.BLOCKED`      | The permission has previously been requested, but denied by the user. In this situation the only way to enable the permission is to direct the user to the [app’s system settings page](#opensettings) for them to manually enable the desired permission. |
 
 > ℹ️ **React Native Permissions** has a [helpful guide](https://github.com/zoontek/react-native-permissions#understanding-permission-flow) on how permission flows operate across iOS and Android
 
 ### `request()`
+
+```typescript
+request(): Promise<PermissionStatus>
+```
 
 Callback to request the system permission(s) for the permission type
 provided to the `usePermission()` hook. This will present the user the
@@ -105,13 +111,30 @@ permission wasn’t requestable).
 
 ### `check()`
 
+```typescript
+check(): Promise<PermissionStatus>
+```
+
 Callback to explicitly recheck the permission status of the permission type provided to the
-`usePermission()` hook.
+`usePermission()` hook. Will update the `status` value with the result
+as well as returning it.
 
 This callback is rarely needed as [`status`](#status) will self update on any
 change to the app being re-foregrounded.
 
 Returns the current [`status`](#status) value.
+
+### `openSettings()`
+
+```typescript
+openSettings(): Promise<void>
+```
+
+Convenience callback that aliases React Native’s
+[Linking.openSettings()](https://reactnative.dev/docs/linking#opensettings)
+function.
+
+Will open the Settings app and display the app’s custom settings, if any.
 
 ### `isInitialising`
 

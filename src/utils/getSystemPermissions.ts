@@ -38,6 +38,11 @@ const permissionGroups: PermissionGroups = {
                 : [PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION],
     },
 
+    [PermissionType.CAMERA]: {
+        ios: [PERMISSIONS.IOS.CAMERA],
+        android: [PERMISSIONS.ANDROID.CAMERA],
+    },
+
     [PermissionType.LOCATION]: {
         ios: [PERMISSIONS.IOS.LOCATION_WHEN_IN_USE],
         android: [
