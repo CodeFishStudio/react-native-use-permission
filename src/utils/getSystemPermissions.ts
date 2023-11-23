@@ -24,8 +24,7 @@ const permissionGroups: PermissionGroups = {
         ios: IS_EMULATOR ? [] : [PERMISSIONS.IOS.BLUETOOTH],
 
         /**
-         * Permissions required for Android change based on API level
-         *
+         * Permissions required for Android change based on API level:
          * https://developer.android.com/guide/topics/connectivity/bluetooth/permissions#declare-android12-or-higher
          */
         android:
@@ -55,18 +54,17 @@ const permissionGroups: PermissionGroups = {
         ios: [PERMISSIONS.IOS.PHOTO_LIBRARY],
 
         /**
-         * Permissions required for Android change based on API level
-         *
+         * Permissions required for Android change based on API level:
          * https://developer.android.com/about/versions/14/changes/partial-photo-video-access#permissions
+         *
+         * For now, ignoring the READ_MEDIA_VISUAL_USER_SELECTED
+         * permission and relying on the compatibility mode described in
+         * the docs:
+         * https://developer.android.com/about/versions/14/changes/partial-photo-video-access#compatibility-mode
          */
         android:
             ANDROID_API_LEVEL >= 33
-                ? ANDROID_API_LEVEL >= 34
-                    ? [
-                          PERMISSIONS.ANDROID.READ_MEDIA_IMAGES,
-                          PERMISSIONS.ANDROID.READ_MEDIA_VISUAL_USER_SELECTED,
-                      ]
-                    : [PERMISSIONS.ANDROID.READ_MEDIA_IMAGES]
+                ? [PERMISSIONS.ANDROID.READ_MEDIA_IMAGES]
                 : [PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE],
     },
 
