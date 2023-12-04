@@ -15,7 +15,7 @@ Updating the command below to use your
 desired version:
 
 ```bash
-npm i https://github.com/CodeFishStudio/react-native-use-permission#v1.0.1
+npm i https://github.com/CodeFishStudio/react-native-use-permission#v1.0.2
 ```
 
 ### Install peer dependencies
