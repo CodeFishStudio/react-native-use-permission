@@ -1,6 +1,6 @@
 {
     "name": "react-native-use-permission",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "React Native hook to help manage system permission status",
     "author": "CodeFish Studio",
     "main": "index.ts",
@@ -10,10 +10,10 @@
         "lint": "eslint \"**/*.{ts,tsx}\" --cache && npm run tsc"
     },
     "peerDependencies": {
-        "react": "^18.2.0",
-        "react-native": "^0.71.0",
-        "react-native-device-info": "^10.3.0",
-        "react-native-permissions": "^4.0.0-beta.1"
+        "react": ">=18.2.0",
+        "react-native": ">=0.71.0",
+        "react-native-device-info": ">=10.3.0",
+        "react-native-permissions": ">=4.0.0"
     },
     "devDependencies": {
         "@react-native-community/eslint-config": "^3.2.0",
