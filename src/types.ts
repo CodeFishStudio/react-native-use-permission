@@ -1,4 +1,3 @@
-import {MutableRefObject} from 'react';
 import {Linking} from 'react-native';
 
 export enum PermissionType {
@@ -45,13 +44,6 @@ export type UsePermissionHook = {
          * INITIALISING state while the initial check() is performed.
          */
         status: PermissionStatus;
-
-        /**
-         * The same value as `status` but contained within a ref so its
-         * up-to-date value can be accessed within callbacks with a
-         * stable reference.
-         */
-        statusRef: MutableRefObject<PermissionStatus>;
 
         /**
          * Callback to request permissions for the permission type

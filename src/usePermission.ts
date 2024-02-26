@@ -140,7 +140,6 @@ export const usePermission: UsePermissionHook = (
 
     return {
         status,
-        statusRef,
         request,
         check,
         openSettings: Linking.openSettings,
