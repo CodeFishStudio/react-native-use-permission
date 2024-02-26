@@ -29,15 +29,24 @@ export const usePermission: UsePermissionHook = (
     );
 
     /**
+     * A ref copy of `status` to be used in callbacks and effects
+     * without needing to be a dependency.
+     */
+    const statusRef = useRef(status);
+
+    /**
      * Whether a request is currently in-flight.
      */
     const isRequesting = useRef(false);
 
     /**
-     * A ref copy of `status` to be used in callbacks and effects
-     * without needing to be a dependency.
+     * Updates the status value in both the `status` state and the
+     * `statusRef.current` value simultaneously.
      */
-    const statusRef = useRef(status);
+    const updateStatus = useCallback((newStatus: PermissionStatus) => {
+        setStatus(newStatus);
+        statusRef.current = newStatus;
+    }, []);
 
     /**
      * Checks the status of the `permissionType`, updates `status` and
@@ -60,17 +69,17 @@ export const usePermission: UsePermissionHook = (
         const systemPermissions = getSystemPermissions(permissionType);
 
         if (!systemPermissions.length) {
-            setStatus(PermissionStatus.GRANTED);
+            updateStatus(PermissionStatus.GRANTED);
             return PermissionStatus.GRANTED;
         }
 
         const results = await checkMultiple(systemPermissions);
         const updatedStatus = getConsolidatedStatus(Object.values(results));
 
-        setStatus(updatedStatus);
+        updateStatus(updatedStatus);
 
         return updatedStatus;
-    }, [permissionType]);
+    }, [permissionType, updateStatus]);
 
     /**
      * Will trigger a system dialog to request the permission type.
@@ -102,26 +111,19 @@ export const usePermission: UsePermissionHook = (
         }
 
         if (!systemPermissions.length) {
-            setStatus(PermissionStatus.GRANTED);
+            updateStatus(PermissionStatus.GRANTED);
             return PermissionStatus.GRANTED;
         }
 
         const results = await requestMultiple(systemPermissions);
         const updatedStatus = getConsolidatedStatus(Object.values(results));
 
-        setStatus(updatedStatus);
+        updateStatus(updatedStatus);
 
         isRequesting.current = false;
 
         return updatedStatus;
-    }, [permissionType]);
-
-    /**
-     * Maintain the `savedStatus` value
-     */
-    useEffect(() => {
-        statusRef.current = status;
-    }, [status]);
+    }, [permissionType, updateStatus]);
 
     /**
      * Initialise the permission status
@@ -138,6 +140,7 @@ export const usePermission: UsePermissionHook = (
 
     return {
         status,
+        statusRef,
         request,
         check,
         openSettings: Linking.openSettings,
